@@ -992,7 +992,11 @@ ${urls}
             or(
               ilike(products.name, queryPattern),
               ilike(products.model, queryPattern),
-              ilike(products.catalogNumber, queryPattern)
+              ilike(products.catalogNumber, queryPattern),
+              ilike(products.description, queryPattern),
+              ilike(products.technicalSpecs, queryPattern),
+              ilike(products.application, queryPattern),
+              ilike(products.manufacturer, queryPattern)
             )
           )
         )

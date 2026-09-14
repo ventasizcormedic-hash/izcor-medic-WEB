@@ -1,0 +1,1 @@
+import { db } from "./src/db/index.ts"; import { products } from "./src/db/schema.ts"; import { sql } from "drizzle-orm"; async function run() { const res = await db.select({ status: products.publicationStatus, count: sql`count(*)::int` }).from(products).groupBy(products.publicationStatus); console.log(res); process.exit(0); } run();
