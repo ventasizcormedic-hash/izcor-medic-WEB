@@ -152,9 +152,17 @@ export function ProductCard({
                 alt={`Visual conceptual referencial - ${categoryName}`}
                 loading="lazy"
                 decoding="async"
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out opacity-60"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out opacity-80"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-slate-900/20 to-transparent mix-blend-multiply" />
+              
+              {/* IZCOR Watermark */}
+              <div className="absolute inset-0 flex items-center justify-center opacity-30 pointer-events-none">
+                <svg viewBox="0 0 100 100" className="w-24 h-24 sm:w-32 sm:h-32 drop-shadow-md" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M 35 10 h 30 a 5 5 0 0 1 5 5 v 20 h 20 a 5 5 0 0 1 5 5 v 20 a 5 5 0 0 1 -5 5 h -20 v 20 a 5 5 0 0 1 -5 5 h -30 a 5 5 0 0 1 -5 -5 v -20 h -20 a 5 5 0 0 1 -5 -5 v -20 a 5 5 0 0 1 5 -5 h 20 v -20 a 5 5 0 0 1 5 -5 z" fill="#ffffff" />
+                  <path d="M 12 50 h 28 l 6 -20 l 12 40 l 6 -20 h 24" stroke="#0099b8" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </div>
             </div>
           ) : (
             <div className="flex flex-col items-center justify-center text-slate-400 group-hover:text-brand-navy transition-colors p-5">
@@ -172,8 +180,9 @@ export function ProductCard({
         <div className="absolute top-3 left-3 flex flex-col items-start gap-1.5 pointer-events-none z-10">
           {/* Conceptual visual badge — shown ONLY when using AI fallback, NOT when real photo */}
           {showConceptualImage && (
-            <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded text-[9px] font-bold uppercase tracking-wider bg-amber-500/90 text-white shadow-xs backdrop-blur-xs">
-              Visual Referencial
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[10px] font-bold tracking-wider uppercase bg-[#20384D] text-white shadow-2xs font-heading">
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+              FICHA TÉCNICA VERIFICADA
             </span>
           )}
           {isFeatured ? (

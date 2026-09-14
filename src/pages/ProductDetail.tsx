@@ -246,6 +246,7 @@ export function ProductDetail() {
               brandName={product.brandName}
               model={product.model}
               catalogNumber={product.catalogNumber}
+              categoryName={product.categoryName}
               verificationStatus={product.verificationStatus}
             />
 
