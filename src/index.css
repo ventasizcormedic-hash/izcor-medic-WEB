@@ -537,14 +537,15 @@
 /* FASE 05 - Microinteracciones Uniformes */
 .hover-lift,
 .product-card-elevated {
-  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.35s cubic-bezier(0.22, 1, 0.36, 1);
   border-radius: 16px;
+  background: #FFFFFF;
 }
 .hover-lift:hover,
 .product-card-elevated:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 14px 28px -6px rgba(13, 34, 50, 0.12), 0 4px 10px -2px rgba(13, 34, 50, 0.04);
-  border-color: rgba(0, 185, 216, 0.35);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px -8px rgba(13, 34, 50, 0.15), 0 4px 12px -2px rgba(13, 34, 50, 0.06);
+  border-color: rgba(0, 185, 216, 0.4);
 }
 
 /* ═══════════════════════════════════════════════════════════════════
