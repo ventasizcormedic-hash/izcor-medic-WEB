@@ -32,16 +32,9 @@ export const ProductCardImage: React.FC<ProductCardImageProps> = ({
 }) => {
   const [hasError, setHasError] = useState(false);
 
-  // Extract strictly the primary image
-  const primaryItem = getPrimaryProductImage(images, imageUrl, {
-    productName,
-    brandName,
-  });
-
-  const activeUrl = primaryItem?.url || imageUrl;
-  const isIllustrative = explicitIsIllustrative ?? primaryItem?.isIllustrative ?? false;
-  const altText = primaryItem?.altText || `Fotografía de ${productName}`;
-
+  const activeUrl = (typeof imageUrl === 'string' && imageUrl) ? imageUrl : getPrimaryProductImage(images);
+  const isIllustrative = explicitIsIllustrative ?? false;
+  const altText = `Fotografía de ${productName}`;
   const aspectClass = aspectRatio === 'square' ? 'aspect-square' : 'aspect-4/3';
 
   return (

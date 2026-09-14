@@ -31,6 +31,8 @@ interface Product {
 }
 
 import { SeoHead } from '../components/seo/SeoHead';
+import { motion } from 'motion/react';
+import { staggerContainer, staggerItem } from '../utils/animations';
 
 export function CategoryDetail() {
   const { slug } = useParams<{ slug: string }>();
@@ -229,7 +231,7 @@ export function CategoryDetail() {
       />
       {/* Category Header */}
       <div className="bg-white border-b border-slate-200 pt-8 pb-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           {/* Breadcrumbs */}
           <nav className="flex items-center space-x-2 text-sm text-slate-500 mb-6">
             <Link to="/" className="hover:text-indigo-600 transition-colors">Inicio</Link>
@@ -274,7 +276,7 @@ export function CategoryDetail() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
+      <div className="max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 mt-8">
         
         {/* Subcategories Grid */}
         {subcategories.length > 0 && (
@@ -282,22 +284,28 @@ export function CategoryDetail() {
             <h3 className="text-lg font-bold text-[#2C3E50] mb-6 flex items-center gap-2">
               <LayoutGrid className="w-5 h-5 text-brand-cyan" /> Subcategorías
             </h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            <motion.div 
+              variants={staggerContainer}
+              initial="hidden"
+              animate="visible"
+              className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4"
+            >
               {subcategories.map(sub => (
-                <Link 
-                  key={sub.id} 
-                  to={`/categorias/${sub.slug}`}
-                  className="bg-white p-4 rounded-2xl border border-slate-200 hover:border-brand-cyan/40 hover:shadow-md active:scale-[0.98] transition-all group text-center flex flex-col items-center justify-center h-full"
-                >
-                  <span className="font-bold text-slate-800 group-hover:text-brand-cyan text-sm leading-tight mb-2">
-                    {sub.name}
-                  </span>
-                  <span className="text-xs text-slate-500 font-medium">
-                    {sub.productCount} productos
-                  </span>
-                </Link>
+                <motion.div key={sub.id} variants={staggerItem} className="h-full">
+                  <Link 
+                    to={`/categorias/${sub.slug}`}
+                    className="bg-white p-4 rounded-2xl border border-slate-200 hover:border-brand-cyan/40 hover:shadow-md active:scale-[0.98] transition-all group text-center flex flex-col items-center justify-center h-full"
+                  >
+                    <span className="font-bold text-slate-800 group-hover:text-brand-cyan text-sm leading-tight mb-2">
+                      {sub.name}
+                    </span>
+                    <span className="text-xs text-slate-500 font-medium">
+                      {sub.productCount} productos
+                    </span>
+                  </Link>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
         )}
 
@@ -307,26 +315,34 @@ export function CategoryDetail() {
             <h3 className="text-lg font-bold text-slate-900 mb-6 flex items-center gap-2">
               <CheckCircle2 className="w-5 h-5 text-emerald-600" /> Destacados en {category.name}
             </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <motion.div 
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+            >
               {featuredProducts.map(product => (
-                <Link key={product.id} to={`/producto/${product.slug}`} className="bg-white rounded-2xl border-2 border-emerald-100 p-4 hover:shadow-lg hover:border-emerald-300 transition-all group flex flex-col h-full">
-                  <div className="aspect-square rounded-xl bg-slate-50 mb-4 overflow-hidden relative flex items-center justify-center p-4">
-                    {product.images && product.images.length > 0 ? (
-                      <img src={product.images[0].url} alt={product.images[0].altText || product.name} className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-500" />
-                    ) : (
-                      <Package className="w-12 h-12 text-slate-300" />
-                    )}
-                  </div>
-                  <div className="flex-1 flex flex-col">
-                    <span className="text-xs font-bold text-emerald-600 mb-1">{product.brandName || product.manufacturer || 'General'}</span>
-                    <h4 className="font-bold text-slate-900 text-sm mb-2 line-clamp-2 group-hover:text-emerald-700 transition-colors">{product.name}</h4>
-                    <div className="mt-auto pt-4 border-t border-slate-100">
-                      <span className="text-xs text-slate-500 font-mono block">REF: {product.catalogNumber || product.model || 'N/A'}</span>
+                <motion.div key={product.id} variants={staggerItem} className="h-full">
+                  <Link to={`/producto/${product.slug}`} className="bg-white rounded-2xl border-2 border-emerald-100 p-4 hover:shadow-lg hover:border-emerald-300 transition-all group flex flex-col h-full">
+                    <div className="aspect-square rounded-xl bg-slate-50 mb-4 overflow-hidden relative flex items-center justify-center p-4">
+                      {product.images && product.images.length > 0 ? (
+                        <img src={product.images[0].url} alt={product.images[0].altText || product.name} className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-500" />
+                      ) : (
+                        <Package className="w-12 h-12 text-slate-300" />
+                      )}
                     </div>
-                  </div>
-                </Link>
+                    <div className="flex-1 flex flex-col">
+                      <span className="text-xs font-bold text-emerald-600 mb-1">{product.brandName || product.manufacturer || 'General'}</span>
+                      <h4 className="font-bold text-slate-900 text-sm mb-2 line-clamp-2 group-hover:text-emerald-700 transition-colors">{product.name}</h4>
+                      <div className="mt-auto pt-4 border-t border-slate-100">
+                        <span className="text-xs text-slate-500 font-mono block">REF: {product.catalogNumber || product.model || 'N/A'}</span>
+                      </div>
+                    </div>
+                  </Link>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
         )}
 
@@ -483,47 +499,55 @@ export function CategoryDetail() {
 
             {/* Products Grid/List */}
             {productsLoading ? (
-              <div className={`grid ${viewMode === 'grid' ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6' : 'grid-cols-1 gap-4'}`}>
+              <div className={`grid ${viewMode === 'grid' ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6' : 'grid-cols-1 gap-4'}`}>
                 {[1,2,3,4,5,6].map(i => (
                   <div key={i} className={`bg-slate-200 animate-pulse rounded-2xl ${viewMode === 'grid' ? 'h-80' : 'h-32'}`}></div>
                 ))}
               </div>
             ) : products.length > 0 ? (
-              <div className={`grid ${viewMode === 'grid' ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6' : 'grid-cols-1 gap-4'}`}>
+              <motion.div 
+                key={`cat-products-${page}-${sort}-${q}-${filterBrand}-${filterManufacturer}`}
+                variants={staggerContainer}
+                initial="hidden"
+                animate="visible"
+                className={`grid ${viewMode === 'grid' ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6' : 'grid-cols-1 gap-4'}`}
+              >
                 {products.map(product => (
-                  <Link key={product.id} to={`/producto/${product.slug}`} className={`bg-white rounded-2xl border border-slate-200 hover:border-indigo-300 hover:shadow-xl transition-all group overflow-hidden ${viewMode === 'list' ? 'flex flex-row p-4 items-center gap-6' : 'flex flex-col'}`}>
-                    
-                    <div className={`${viewMode === 'grid' ? 'w-full aspect-[4/3] border-b border-slate-100' : 'w-32 h-32 flex-shrink-0 border border-slate-100 rounded-xl'} bg-slate-50 relative flex items-center justify-center p-4 overflow-hidden`}>
-                      {product.images && product.images.length > 0 ? (
-                        <img src={product.images[0].url} alt={product.images[0].altText || product.name} className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-500" />
-                      ) : (
-                        <Package className="w-10 h-10 text-slate-300" />
-                      )}
-                    </div>
-                    
-                    <div className={`${viewMode === 'grid' ? 'p-5 flex-1 flex flex-col' : 'flex-1'}`}>
-                      <div className="flex items-center gap-2 mb-2">
-                        <span className="text-[10px] font-black uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded-md">
-                          {product.brandName || product.manufacturer || 'General'}
-                        </span>
-                      </div>
-                      <h3 className={`font-bold text-slate-900 group-hover:text-indigo-600 transition-colors ${viewMode === 'grid' ? 'text-sm mb-2 line-clamp-2' : 'text-lg mb-1'}`}>
-                        {product.name}
-                      </h3>
-                      {viewMode === 'list' && product.description && (
-                        <p className="text-sm text-slate-500 line-clamp-2 mb-2">{product.description}</p>
-                      )}
+                  <motion.div key={product.id} variants={staggerItem} className="h-full">
+                    <Link to={`/producto/${product.slug}`} className={`bg-white rounded-2xl border border-slate-200 hover:border-indigo-300 hover:shadow-xl transition-all group overflow-hidden h-full ${viewMode === 'list' ? 'flex flex-row p-4 items-center gap-6' : 'flex flex-col'}`}>
                       
-                      <div className={`mt-auto ${viewMode === 'grid' ? 'pt-4 border-t border-slate-100' : ''}`}>
-                        <div className="flex items-center justify-between text-xs text-slate-500 font-mono">
-                          <span>{product.catalogNumber ? `REF: ${product.catalogNumber}` : ''}</span>
-                          <span>{product.model ? `Mod: ${product.model}` : ''}</span>
+                      <div className={`${viewMode === 'grid' ? 'w-full aspect-[4/3] border-b border-slate-100' : 'w-32 h-32 flex-shrink-0 border border-slate-100 rounded-xl'} bg-slate-50 relative flex items-center justify-center p-4 overflow-hidden`}>
+                        {product.images && product.images.length > 0 ? (
+                          <img src={product.images[0].url} alt={product.images[0].altText || product.name} className="max-w-full max-h-full object-contain group-hover:scale-105 transition-transform duration-500" />
+                        ) : (
+                          <Package className="w-10 h-10 text-slate-300" />
+                        )}
+                      </div>
+                      
+                      <div className={`${viewMode === 'grid' ? 'p-5 flex-1 flex flex-col' : 'flex-1'}`}>
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="text-[10px] font-black uppercase tracking-wider text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded-md">
+                            {product.brandName || product.manufacturer || 'General'}
+                          </span>
+                        </div>
+                        <h3 className={`font-bold text-slate-900 group-hover:text-indigo-600 transition-colors ${viewMode === 'grid' ? 'text-sm mb-2 line-clamp-2' : 'text-lg mb-1'}`}>
+                          {product.name}
+                        </h3>
+                        {viewMode === 'list' && product.description && (
+                          <p className="text-sm text-slate-500 line-clamp-2 mb-2">{product.description}</p>
+                        )}
+                        
+                        <div className={`mt-auto ${viewMode === 'grid' ? 'pt-4 border-t border-slate-100' : ''}`}>
+                          <div className="flex items-center justify-between text-xs text-slate-500 font-mono">
+                            <span>{product.catalogNumber ? `REF: ${product.catalogNumber}` : ''}</span>
+                            <span>{product.model ? `Mod: ${product.model}` : ''}</span>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </Link>
+                    </Link>
+                  </motion.div>
                 ))}
-              </div>
+              </motion.div>
             ) : (
               <div className="bg-white border border-slate-200 rounded-3xl p-12 text-center">
                 <Search className="w-12 h-12 text-slate-300 mx-auto mb-4" />

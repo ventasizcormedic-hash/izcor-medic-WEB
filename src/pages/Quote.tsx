@@ -174,7 +174,7 @@ export function Quote() {
       />
 
       <main id="quote-page" className="min-h-screen bg-[#F8FAFC] py-8 md:py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           
           {/* Top Breadcrumb & Header */}
           <div className="mb-8">

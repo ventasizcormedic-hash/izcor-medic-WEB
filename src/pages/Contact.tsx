@@ -53,7 +53,7 @@ export function Contact() {
       <main className="min-h-screen bg-[#F8FAFC]">
         {/* Header Banner */}
         <section className="bg-[#2C3E50] text-white py-16 sm:py-20 relative overflow-hidden">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+          <div className="max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10 text-center">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-cyan-300 text-xs font-bold uppercase tracking-wider mb-4 border border-white/15">
               <Phone className="w-3.5 h-3.5" />
               Canales de Atención Institucional
@@ -69,7 +69,7 @@ export function Contact() {
 
         {/* 2-Column Contact Section */}
         <section className="py-16 sm:py-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
               
               {/* Left Column: Direct Contact Info & Corporate Trust */}

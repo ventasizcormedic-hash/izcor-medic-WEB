@@ -15,6 +15,8 @@ import { ComparisonBar } from '../components/catalog/ComparisonBar';
 import { ComparisonModal } from '../components/catalog/ComparisonModal';
 import { ViewMode, SortOption, ComparisonProduct } from '../components/catalog/types';
 import { SeoHead } from '../components/seo/SeoHead';
+import { motion } from 'motion/react';
+import { staggerContainer, staggerItem } from '../utils/animations';
 
 export function Catalog() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -90,15 +92,14 @@ export function Catalog() {
   const handleToggleCompare = useCallback((item: ComparisonProduct) => {
     setComparisonList(prev => {
       const exists = prev.some(p => p.id === item.id);
-      if (exists) {
-        return prev.filter(p => p.id !== item.id);
-      }
-      if (prev.length >= 4) {
-        setCompareToast('Límite alcanzado: Puede comparar hasta 4 equipos médicos simultáneamente.');
-        setTimeout(() => setCompareToast(null), 3500);
+      if (!exists && prev.length >= 4) {
+        setTimeout(() => {
+          setCompareToast('Límite alcanzado: Puede comparar hasta 4 equipos médicos simultáneamente.');
+          setTimeout(() => setCompareToast(null), 3500);
+        }, 0);
         return prev;
       }
-      return [...prev, item];
+      return exists ? prev.filter(p => p.id !== item.id) : [...prev, item];
     });
   }, []);
 
@@ -388,7 +389,7 @@ export function Catalog() {
         noindex={shouldNoindex}
       />
       <main id="catalog-page" className="min-h-screen bg-[#F8FAFC] py-8 md:py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
         
         {/* 1. Header with Breadcrumbs, Search, Corporate Banner & Toolbar */}
         <CatalogHeader
@@ -496,51 +497,65 @@ export function Catalog() {
             ) : products.length > 0 ? (
               <>
                 {viewMode === 'grid' ? (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <motion.div 
+                    key={`grid-${currentPage}-${selectedCategory}-${selectedSubcategory}-${selectedBrand}-${selectedManufacturer}-${selectedApplication}-${selectedVerification}-${selectedProcedencia}-${sort}-${debouncedSearch}`}
+                    variants={staggerContainer}
+                    initial="hidden"
+                    animate="visible"
+                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+                  >
                     {products.map(product => (
-                      <ProductCard 
-                        key={product.id}
-                        id={product.id}
-                        name={product.name}
-                        slug={product.slug}
-                        model={product.model || ''}
-                        brandName={product.brandName || 'IZCOR MEDIC'}
-                        manufacturer={product.manufacturer}
-                        catalogNumber={product.catalogNumber}
-                        categoryName={product.categoryName || undefined}
-                        imageUrl={product.imageUrl}
-                        verificationStatus={product.verificationStatus}
-                        technicalSpecs={product.technicalSpecs}
-                        application={product.application}
-                        presentation={product.presentation}
-                        isCompared={comparisonList.some(p => p.id === product.id)}
-                        onToggleCompare={handleToggleCompare}
-                      />
+                      <motion.div key={product.id} variants={staggerItem} className="h-full">
+                        <ProductCard 
+                          id={product.id}
+                          name={product.name}
+                          slug={product.slug}
+                          model={product.model || ''}
+                          brandName={product.brandName || 'IZCOR MEDIC'}
+                          manufacturer={product.manufacturer}
+                          catalogNumber={product.catalogNumber}
+                          categoryName={product.categoryName || undefined}
+                          imageUrl={product.imageUrl}
+                          verificationStatus={product.verificationStatus}
+                          technicalSpecs={product.technicalSpecs}
+                          application={product.application}
+                          presentation={product.presentation}
+                          isCompared={comparisonList.some(p => p.id === product.id)}
+                          onToggleCompare={handleToggleCompare}
+                        />
+                      </motion.div>
                     ))}
-                  </div>
+                  </motion.div>
                 ) : (
-                  <div className="space-y-3">
+                  <motion.div 
+                    key={`list-${currentPage}-${selectedCategory}-${selectedSubcategory}-${selectedBrand}-${selectedManufacturer}-${selectedApplication}-${selectedVerification}-${selectedProcedencia}-${sort}-${debouncedSearch}`}
+                    variants={staggerContainer}
+                    initial="hidden"
+                    animate="visible"
+                    className="space-y-3"
+                  >
                     {products.map(product => (
-                      <ProductListItem
-                        key={product.id}
-                        id={product.id}
-                        name={product.name}
-                        slug={product.slug}
-                        brandName={product.brandName}
-                        manufacturer={product.manufacturer}
-                        model={product.model}
-                        catalogNumber={product.catalogNumber}
-                        categoryName={product.categoryName}
-                        imageUrl={product.imageUrl}
-                        technicalSpecs={product.technicalSpecs}
-                        application={product.application}
-                        presentation={product.presentation}
-                        verificationStatus={product.verificationStatus}
-                        isCompared={comparisonList.some(p => p.id === product.id)}
-                        onToggleCompare={handleToggleCompare}
-                      />
+                      <motion.div key={product.id} variants={staggerItem}>
+                        <ProductListItem
+                          id={product.id}
+                          name={product.name}
+                          slug={product.slug}
+                          brandName={product.brandName}
+                          manufacturer={product.manufacturer}
+                          model={product.model}
+                          catalogNumber={product.catalogNumber}
+                          categoryName={product.categoryName}
+                          imageUrl={product.imageUrl}
+                          technicalSpecs={product.technicalSpecs}
+                          application={product.application}
+                          presentation={product.presentation}
+                          verificationStatus={product.verificationStatus}
+                          isCompared={comparisonList.some(p => p.id === product.id)}
+                          onToggleCompare={handleToggleCompare}
+                        />
+                      </motion.div>
                     ))}
-                  </div>
+                  </motion.div>
                 )}
 
                 {/* Scalable Pagination */}

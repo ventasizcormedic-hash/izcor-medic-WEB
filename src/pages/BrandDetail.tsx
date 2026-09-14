@@ -6,6 +6,8 @@ import {
 } from 'lucide-react';
 import { ProductCard } from '../components/ProductCard';
 import { SeoHead } from '../components/seo/SeoHead';
+import { motion } from 'motion/react';
+import { staggerContainer, staggerItem } from '../utils/animations';
 
 export function BrandDetail() {
   const { idOrSlug } = useParams<{ idOrSlug: string }>();
@@ -79,8 +81,8 @@ export function BrandDetail() {
           "url": brand.website || undefined
         }}
       />
-      <div className="min-h-screen bg-[#F8FAFC] py-8 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto space-y-8">
+      <div className="min-h-screen bg-[#F8FAFC] py-8 px-4 sm:px-6 lg:px-8 xl:px-12">
+        <div className="max-w-[1680px] mx-auto space-y-8">
         
         {/* Breadcrumb */}
         <nav className="flex text-xs font-semibold text-slate-500" aria-label="Breadcrumb">
@@ -189,11 +191,19 @@ export function BrandDetail() {
               <p className="text-sm font-bold text-[#2C3E50]">No se encontraron productos para esta marca</p>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <motion.div 
+              key={`brand-products-${page}-${searchTerm}`}
+              variants={staggerContainer}
+              initial="hidden"
+              animate="visible"
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+            >
               {productList.map((prod: any) => (
-                <ProductCard key={prod.id} {...prod} />
+                <motion.div key={prod.id} variants={staggerItem} className="h-full">
+                  <ProductCard {...prod} />
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           )}
 
           {/* Pagination */}

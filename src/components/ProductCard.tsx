@@ -312,7 +312,7 @@ export function ProductCard({
           <Link
             to={`/productos/${slug}`}
             id={`btn-view-${id}`}
-            className="inline-flex items-center justify-center gap-1.5 h-9.5 px-3 rounded-xl text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 hover:text-[#2C3E50] active:scale-[0.98] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 font-heading"
+            className="inline-flex items-center justify-center gap-1.5 h-10 px-3 rounded-xl text-xs font-bold text-slate-700 bg-slate-100/90 hover:bg-slate-200/90 hover:text-[#0A192F] active:scale-[0.98] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 font-heading"
             title={`Ver ficha técnica de ${name}`}
           >
             <span>Ver Ficha</span>
@@ -324,12 +324,12 @@ export function ProductCard({
             type="button"
             onClick={handleAddToQuote}
             id={`btn-add-quote-${id}`}
-            className={`inline-flex items-center justify-center gap-1.5 h-9.5 px-3 rounded-xl text-xs font-bold transition-all shadow-xs active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-cyan font-heading cursor-pointer ${
+            className={`inline-flex items-center justify-center gap-1.5 h-10 px-3 rounded-xl text-xs font-bold transition-all shadow-xs active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 font-heading cursor-pointer ${
               wasJustAdded
                 ? 'bg-emerald-600 text-white shadow-sm'
                 : inTray
-                ? 'bg-cyan-800 text-white hover:bg-cyan-900'
-                : 'bg-[#00B9D8] hover:bg-[#00a2be] active:bg-[#008fa8] text-[#0D2232] font-black shadow-xs hover:shadow'
+                ? 'bg-[#0A192F] text-white hover:bg-[#0F2438]'
+                : 'bg-brand-cyan hover:bg-[#0284C7] active:bg-[#0369A1] text-white font-bold shadow-xs hover:shadow'
             }`}
             title={`Agregar ${name} a la bandeja de cotización`}
           >
@@ -340,7 +340,7 @@ export function ProductCard({
               </>
             ) : inTray ? (
               <>
-                <ShoppingBag className="w-3.5 h-3.5 shrink-0" />
+                <ShoppingBag className="w-3.5 h-3.5 shrink-0 text-cyan-300" />
                 <span>En Bandeja</span>
               </>
             ) : (

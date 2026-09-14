@@ -1,0 +1,1 @@
+export { ProductReviewWorkspace } from './AdminDashboard';

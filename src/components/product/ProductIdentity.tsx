@@ -54,9 +54,9 @@ export const ProductIdentity: React.FC<ProductIdentityProps> = ({ product }) => 
         )}
 
         {/* Subcategory */}
-        {product.subcategory?.name && (
+        {product.subcategory && (
           <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-medium bg-slate-50 text-slate-600 border border-slate-200">
-            <span>{product.subcategory.name}</span>
+            <span>{typeof product.subcategory === 'string' ? product.subcategory : product.subcategory.name}</span>
           </span>
         )}
 

@@ -44,26 +44,27 @@ export function ProductDetail() {
   });
 
   const handleToggleCompare = (prod: any) => {
-    setComparisonList((prev) => {
-      let updated: any[];
-      if (prev.some((p) => p.id === prod.id)) {
-        updated = prev.filter((p) => p.id !== prod.id);
-      } else {
-        if (prev.length >= 4) {
-          setCompareToast('Límite alcanzado: Puedes comparar hasta 4 productos a la vez.');
-          setTimeout(() => setCompareToast(null), 3500);
-          return prev;
-        }
-        updated = [...prev, prod];
-      }
-      try {
-        localStorage.setItem('izcor_product_comparison', JSON.stringify(updated));
+    const exists = comparisonList.some((p) => p.id === prod.id);
+    if (!exists && comparisonList.length >= 4) {
+      setCompareToast('Límite alcanzado: Puedes comparar hasta 4 productos a la vez.');
+      setTimeout(() => setCompareToast(null), 3500);
+      return;
+    }
+
+    const updated = exists
+      ? comparisonList.filter((p) => p.id !== prod.id)
+      : [...comparisonList, prod];
+
+    setComparisonList(updated);
+
+    try {
+      localStorage.setItem('izcor_product_comparison', JSON.stringify(updated));
+      setTimeout(() => {
         window.dispatchEvent(new Event('storage'));
-      } catch (err) {
-        console.error('Failed to sync comparison', err);
-      }
-      return updated;
-    });
+      }, 0);
+    } catch (err) {
+      console.error('Failed to sync comparison', err);
+    }
   };
 
   useEffect(() => {
@@ -221,14 +222,14 @@ export function ProductDetail() {
         />
       )}
       <main id="product-detail-view" className="min-h-screen bg-[#F8FAFC] pb-28 md:pb-20 pt-6">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
         
         {/* 1. Institutional Contextual Breadcrumb */}
         <ProductBreadcrumb
           categoryName={product.categoryName}
           categorySlug={product.categorySlug}
-          subcategoryName={product.subcategory?.name}
-          subcategorySlug={product.subcategory?.slug}
+          subcategoryName={typeof product.subcategory === 'string' ? product.subcategory : product.subcategory?.name}
+          subcategorySlug={typeof product.subcategory === 'object' ? product.subcategory?.slug : undefined}
           productName={product.name}
           prevProduct={product.prevProduct}
           nextProduct={product.nextProduct}

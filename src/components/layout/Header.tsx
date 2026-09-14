@@ -118,30 +118,30 @@ export function Header() {
       {/* 1. TOP BAR (Very thin, elegant, corporate information) */}
       <div 
         id="top-bar-corporate"
-        className="bg-[radial-gradient(circle_at_top_left,_rgba(0,185,216,0.14),_transparent_30%),linear-gradient(90deg,_#10283a_0%,_#162B3B_35%,_#0D2232_100%)] text-slate-200 text-[11px] sm:text-xs border-b border-white/10 select-none hidden md:block"
+        className="bg-[#0A192F] text-slate-200 text-[11px] sm:text-xs border-b border-white/10 select-none hidden md:block"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-1.5 flex items-center justify-between">
+        <div className="max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-2 flex flex-wrap items-center justify-between gap-x-4 gap-y-1">
           {/* Left Info: Trust Badge & Location */}
-          <div className="flex items-center gap-4 lg:gap-6">
-            <span className="inline-flex items-center gap-1.5 text-cyan-300 font-semibold tracking-tight">
-              <ShieldCheck className="w-3.5 h-3.5 text-cyan-400" />
-              Suministro Médico Homologado • DIGEMID & OSCE
+          <div className="flex items-center gap-3 lg:gap-5 min-w-0">
+            <span className="inline-flex items-center gap-1.5 text-cyan-300 font-semibold tracking-tight whitespace-nowrap">
+              <ShieldCheck className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
+              Suministro Médico Homologado • DIGEMID &amp; OSCE
             </span>
-            <span className="text-white/20 hidden lg:inline">|</span>
-            <span className="text-slate-300 text-[11px] hidden lg:inline-flex items-center gap-1 font-medium">
-              <MapPin className="w-3 h-3 text-slate-400" />
+            <span className="text-white/20 hidden xl:inline">|</span>
+            <span className="text-slate-300 text-[11px] hidden xl:inline-flex items-center gap-1 font-medium truncate">
+              <MapPin className="w-3 h-3 text-cyan-400 shrink-0" />
               Lima, Perú • Despacho Nacional a Hospitales y Clínicas
             </span>
           </div>
 
           {/* Right Info: Phone, Email, Hours */}
-          <div className="flex items-center gap-4 lg:gap-6 text-[11px] sm:text-xs font-semibold">
+          <div className="flex items-center gap-3 lg:gap-5 text-[11px] sm:text-xs font-semibold shrink-0">
             <a 
               href="mailto:ventasizcormedic@gmail.com" 
-              className="inline-flex items-center gap-1.5 text-slate-300 hover:text-cyan-300 transition-colors"
+              className="inline-flex items-center gap-1.5 text-slate-300 hover:text-cyan-300 transition-colors whitespace-nowrap"
               title="Correo institucional"
             >
-              <Mail className="w-3.5 h-3.5 text-cyan-400" />
+              <Mail className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
               ventasizcormedic@gmail.com
             </a>
             <span className="text-white/20">•</span>
@@ -149,15 +149,15 @@ export function Header() {
               href="https://wa.me/51928130349?text=Hola%20IZCOR%20MEDIC%2C%20solicito%20informaci%C3%B3n%20y%20cotizaci%C3%B3n%20de%20equipos%20e%20insumos%20m%C3%A9dicos." 
               target="_blank" 
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-emerald-400 hover:text-emerald-300 transition-colors"
+              className="inline-flex items-center gap-1.5 text-emerald-400 hover:text-emerald-300 transition-colors whitespace-nowrap"
               title="Atención directa por WhatsApp"
             >
-              <Phone className="w-3.5 h-3.5" />
+              <Phone className="w-3.5 h-3.5 shrink-0" />
               +51 928 130 349
             </a>
-            <span className="text-white/20 hidden sm:inline">•</span>
-            <span className="text-slate-400 text-[11px] hidden xl:inline-flex items-center gap-1">
-              <Clock className="w-3 h-3 text-slate-400" />
+            <span className="text-white/20 hidden xl:inline">•</span>
+            <span className="text-slate-400 text-[11px] hidden xl:inline-flex items-center gap-1 whitespace-nowrap">
+              <Clock className="w-3 h-3 text-slate-400 shrink-0" />
               Lun - Vie: 8:30 - 18:30
             </span>
           </div>
@@ -167,53 +167,53 @@ export function Header() {
       {/* 2. STICKY HEADER */}
       <header 
         id="main-sticky-header"
-        className={`sticky top-0 left-0 right-0 z-40 w-full transition-all duration-250 ${
+        className={`sticky top-0 left-0 right-0 z-40 w-full transition-all duration-200 ${
           scrolled 
-            ? 'bg-white/92 backdrop-blur-xl shadow-[0_12px_32px_rgba(15,23,42,0.08)] border-b border-slate-200/90 py-2.5' 
-            : 'bg-white/96 backdrop-blur-md border-b border-slate-200/80 py-3.5'
+            ? 'bg-white/95 backdrop-blur-xl shadow-md border-b border-slate-200/90 py-2' 
+            : 'bg-white/98 backdrop-blur-md border-b border-slate-200/80 py-2.5 sm:py-3'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-12 md:h-14 gap-4">
+        <div className="max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+          <div className="flex items-center justify-between min-h-[44px] sm:min-h-[48px] gap-2 sm:gap-4">
             
             {/* Left: Logotipo */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 sm:gap-3 shrink-0">
               <Link 
                 to="/" 
                 id="header-brand-logo"
-                className="flex-shrink-0 flex items-center p-1.5 rounded-xl transition-transform hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#2C3E50]"
+                className="flex-shrink-0 flex items-center rounded-xl transition-transform hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500"
                 aria-label="IZCOR MEDIC - Inicio"
               >
-                <Logo className="h-9 md:h-11" />
+                <Logo size="md" />
               </Link>
 
-              <div className="header-brand-shell hidden sm:flex items-center rounded-full px-3 py-1.5">
+              <div className="header-brand-shell hidden 2xl:flex items-center rounded-full px-3 py-1.5">
                 <div className="brand-lockup-mark text-left">
-                  <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#20384D]">IZCOR MEDIC</p>
+                  <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#0A192F]">IZCOR MEDIC</p>
                   <p className="text-[9px] font-semibold tracking-[0.14em] uppercase text-slate-500">Instituciones de salud</p>
                 </div>
               </div>
             </div>
 
-            {/* Center: Navegación Principal (Inicio, Nosotros, Catálogo, Noticias, Contáctanos) */}
+            {/* Center: Navegación Principal */}
             <nav 
               id="desktop-navigation"
-              className="hidden xl:flex items-center space-x-1"
+              className="hidden lg:flex items-center space-x-1 shrink-0"
               aria-label="Navegación principal"
             >
               {/* 1. Inicio */}
               <Link
                 to="/"
                 id="nav-link-inicio"
-                className={`px-3.5 py-2 rounded-xl text-[11px] sm:text-xs font-black tracking-[0.14em] uppercase transition-all duration-200 relative ${
+                className={`px-3 py-2 rounded-xl text-xs font-bold tracking-[0.1em] uppercase transition-all duration-200 relative whitespace-nowrap ${
                   isHomeActive 
-                    ? 'text-[#2C3E50] bg-slate-100/90 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)]' 
-                    : 'text-[#2C3E50]/75 hover:text-cyan-700 hover:bg-slate-50'
+                    ? 'text-[#0A192F] bg-slate-100/90 shadow-2xs' 
+                    : 'text-slate-600 hover:text-cyan-700 hover:bg-slate-50'
                 }`}
               >
                 <span>Inicio</span>
                 {isHomeActive && (
-                  <span className="absolute bottom-1 left-3.5 right-3.5 h-0.5 bg-brand-cyan rounded-full" />
+                  <span className="absolute bottom-1 left-3 right-3 h-0.5 bg-brand-cyan rounded-full" />
                 )}
               </Link>
 
@@ -221,15 +221,15 @@ export function Header() {
               <Link
                 to="/nosotros"
                 id="nav-link-nosotros"
-                className={`px-3.5 py-2 rounded-xl text-[11px] sm:text-xs font-black tracking-[0.14em] uppercase transition-all duration-200 relative ${
+                className={`px-3 py-2 rounded-xl text-xs font-bold tracking-[0.1em] uppercase transition-all duration-200 relative whitespace-nowrap ${
                   isAboutActive 
-                    ? 'text-[#2C3E50] bg-slate-100/90 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)]' 
-                    : 'text-[#2C3E50]/75 hover:text-cyan-700 hover:bg-slate-50'
+                    ? 'text-[#0A192F] bg-slate-100/90 shadow-2xs' 
+                    : 'text-slate-600 hover:text-cyan-700 hover:bg-slate-50'
                 }`}
               >
                 <span>Nosotros</span>
                 {isAboutActive && (
-                  <span className="absolute bottom-1 left-3.5 right-3.5 h-0.5 bg-brand-cyan rounded-full" />
+                  <span className="absolute bottom-1 left-3 right-3 h-0.5 bg-brand-cyan rounded-full" />
                 )}
               </Link>
 
@@ -242,19 +242,19 @@ export function Header() {
                 <Link
                   to="/productos"
                   id="nav-link-catalogo"
-                  className={`inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-[11px] sm:text-xs font-black tracking-[0.14em] uppercase transition-all duration-200 relative ${
+                  className={`inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-bold tracking-[0.1em] uppercase transition-all duration-200 relative whitespace-nowrap ${
                     isCatalogActive 
-                      ? 'text-[#2C3E50] bg-slate-100/90 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)]' 
-                      : 'text-[#2C3E50]/75 hover:text-cyan-700 hover:bg-slate-50'
+                      ? 'text-[#0A192F] bg-slate-100/90 shadow-2xs' 
+                      : 'text-slate-600 hover:text-cyan-700 hover:bg-slate-50'
                   }`}
                   aria-expanded={catalogMenuOpen}
                   aria-haspopup="true"
                 >
-                  <Layers className="w-3.5 h-3.5 opacity-70" />
+                  <Layers className="w-3.5 h-3.5 opacity-70 shrink-0" />
                   <span>Catálogo</span>
                   <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${catalogMenuOpen ? 'rotate-180 text-cyan-700' : 'text-slate-400'}`} />
                   {isCatalogActive && (
-                    <span className="absolute bottom-1 left-3.5 right-3.5 h-0.5 bg-brand-cyan rounded-full" />
+                    <span className="absolute bottom-1 left-3 right-3 h-0.5 bg-brand-cyan rounded-full" />
                   )}
                 </Link>
 
@@ -268,15 +268,15 @@ export function Header() {
               <Link
                 to="/noticias"
                 id="nav-link-noticias"
-                className={`px-3.5 py-2 rounded-xl text-[11px] sm:text-xs font-black tracking-[0.14em] uppercase transition-all duration-200 relative ${
+                className={`px-3 py-2 rounded-xl text-xs font-bold tracking-[0.1em] uppercase transition-all duration-200 relative whitespace-nowrap ${
                   isNewsActive 
-                    ? 'text-[#2C3E50] bg-slate-100/90 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)]' 
-                    : 'text-[#2C3E50]/75 hover:text-cyan-700 hover:bg-slate-50'
+                    ? 'text-[#0A192F] bg-slate-100/90 shadow-2xs' 
+                    : 'text-slate-600 hover:text-cyan-700 hover:bg-slate-50'
                 }`}
               >
                 <span>Noticias</span>
                 {isNewsActive && (
-                  <span className="absolute bottom-1 left-3.5 right-3.5 h-0.5 bg-brand-cyan rounded-full" />
+                  <span className="absolute bottom-1 left-3 right-3 h-0.5 bg-brand-cyan rounded-full" />
                 )}
               </Link>
 
@@ -284,33 +284,33 @@ export function Header() {
               <Link
                 to="/contacto"
                 id="nav-link-contacto"
-                className={`px-3.5 py-2 rounded-xl text-[11px] sm:text-xs font-black tracking-[0.14em] uppercase transition-all duration-200 relative ${
+                className={`px-3 py-2 rounded-xl text-xs font-bold tracking-[0.1em] uppercase transition-all duration-200 relative whitespace-nowrap ${
                   isContactActive 
-                    ? 'text-[#2C3E50] bg-slate-100/90 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)]' 
-                    : 'text-[#2C3E50]/75 hover:text-cyan-700 hover:bg-slate-50'
+                    ? 'text-[#0A192F] bg-slate-100/90 shadow-2xs' 
+                    : 'text-slate-600 hover:text-cyan-700 hover:bg-slate-50'
                 }`}
               >
                 <span>Contáctanos</span>
                 {isContactActive && (
-                  <span className="absolute bottom-1 left-3.5 right-3.5 h-0.5 bg-brand-cyan rounded-full" />
+                  <span className="absolute bottom-1 left-3 right-3 h-0.5 bg-brand-cyan rounded-full" />
                 )}
               </Link>
             </nav>
 
             {/* Right: Search, Comparison, Quote Tray & SOLICITAR COTIZACIÓN CTA */}
-            <div className="flex items-center gap-2 sm:gap-3">
+            <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
               
               {/* Buscador Redondeado con Focus Cian */}
               <button
                 type="button"
                 id="header-search-btn"
                 onClick={() => setSearchModalOpen(true)}
-                className="inline-flex items-center gap-2 px-3 py-2 text-xs font-medium text-slate-500 bg-slate-100/90 hover:bg-slate-200/70 border border-slate-200/80 rounded-full transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-cyan cursor-pointer"
+                className="inline-flex items-center gap-2 px-3 py-2 text-xs font-medium text-slate-600 bg-slate-100/90 hover:bg-slate-200/70 border border-slate-200/80 rounded-full transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-cyan cursor-pointer"
                 title="Buscar en catálogo médico (Ctrl+K)"
                 aria-label="Abrir buscador"
               >
-                <Search className="w-3.5 h-3.5 text-slate-500" />
-                <span className="hidden xl:inline text-slate-500 font-sans">Buscar equipos o insumos...</span>
+                <Search className="w-3.5 h-3.5 text-slate-500 shrink-0" />
+                <span className="hidden 2xl:inline text-slate-500 font-sans">Buscar equipos...</span>
                 <kbd className="hidden sm:inline-flex items-center px-1.5 py-0.5 text-[10px] font-mono text-slate-400 bg-white border border-slate-200 rounded-full">
                   ⌘K
                 </kbd>
@@ -320,12 +320,12 @@ export function Header() {
               <Link
                 to="/productos"
                 id="header-compare-link"
-                className="hidden sm:inline-flex items-center justify-center relative p-2 text-slate-600 hover:text-[#2C3E50] hover:bg-slate-100 rounded-xl transition-colors"
+                className="hidden sm:inline-flex items-center justify-center relative p-2 text-slate-600 hover:text-[#0A192F] hover:bg-slate-100 rounded-xl transition-colors"
                 title={compareCount > 0 ? `${compareCount} equipos en comparación` : "Matriz de comparación"}
               >
-                <Scale className="w-4 h-4" />
+                <Scale className="w-4 h-4 shrink-0" />
                 {compareCount > 0 && (
-                  <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#2C3E50] text-[10px] font-bold text-white shadow-2xs">
+                  <span className="absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#0A192F] text-[10px] font-bold text-white shadow-2xs">
                     {compareCount}
                   </span>
                 )}
@@ -341,18 +341,18 @@ export function Header() {
                   type="button"
                   id="header-quote-cart-btn"
                   onClick={() => setCartTrayOpen(!cartTrayOpen)}
-                  className={`relative p-2.5 rounded-xl border transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-cyan ${
+                  className={`relative p-2 sm:p-2.5 rounded-xl border transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-cyan ${
                     itemCount > 0 
                       ? 'bg-cyan-50 border-cyan-200 text-cyan-800 hover:bg-cyan-100' 
-                      : 'bg-slate-100 border-slate-200 text-slate-600 hover:text-[#2C3E50] hover:bg-slate-200'
+                      : 'bg-slate-100 border-slate-200 text-slate-600 hover:text-[#0A192F] hover:bg-slate-200'
                   }`}
                   aria-label={`Bandeja de cotización: ${itemCount} artículos`}
                   title="Ver bandeja de cotización"
                 >
-                  <ShoppingBag className={`w-4 h-4 ${justAddedId ? 'scale-125 text-cyan-600' : ''} transition-transform duration-200`} />
+                  <ShoppingBag className={`w-4 h-4 ${justAddedId ? 'scale-125 text-cyan-600' : ''} transition-transform duration-200 shrink-0`} />
                   
                   {itemCount > 0 && (
-                    <span className="absolute -top-1.5 -right-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-brand-cyan text-[11px] font-bold text-white shadow-xs animate-in zoom-in-75">
+                    <span className="absolute -top-1.5 -right-1.5 flex h-4.5 w-4.5 items-center justify-center rounded-full bg-brand-cyan text-[10px] font-bold text-white shadow-xs animate-in zoom-in-75">
                       {itemCount}
                     </span>
                   )}
@@ -369,12 +369,12 @@ export function Header() {
               <Link 
                 to="/cotizar" 
                 id="header-btn-solicitar-cotizacion"
-                className="hidden sm:inline-flex items-center justify-center gap-2 bg-[#00B9D8] hover:bg-[#00a2be] active:bg-[#008fa8] text-[#0D2232] px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-xl text-xs sm:text-sm font-black tracking-wide uppercase font-heading transition-all shadow-sm hover:shadow active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00B9D8]"
+                className="hidden sm:inline-flex items-center justify-center gap-1.5 bg-brand-cyan hover:bg-[#0284C7] active:bg-[#0369A1] text-white px-3 sm:px-4 py-2 rounded-xl text-xs font-bold tracking-wide uppercase font-heading transition-all shadow-sm hover:shadow active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-cyan whitespace-nowrap"
                 title="Solicitar cotización institucional formal"
               >
-                <FileText className="w-3.5 sm:w-4 h-3.5 sm:h-4 shrink-0" />
-                <span className="hidden xs:inline">Solicitar Cotización</span>
-                <span className="xs:hidden">Cotizar</span>
+                <FileText className="w-3.5 h-3.5 shrink-0" />
+                <span className="hidden md:inline">Solicitar Cotización</span>
+                <span className="md:hidden">Cotizar</span>
               </Link>
 
               {/* Mobile Menu Toggle */}
@@ -382,7 +382,7 @@ export function Header() {
                 type="button"
                 id="header-mobile-menu-btn"
                 onClick={() => setMobileDrawerOpen(true)}
-                className="xl:hidden p-2 rounded-xl text-slate-700 hover:text-[#2C3E50] hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-cyan transition-colors"
+                className="lg:hidden p-2 rounded-xl text-slate-700 hover:text-[#0A192F] hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-cyan transition-colors"
                 aria-label="Abrir menú de navegación"
               >
                 <Menu className="w-5 h-5 sm:w-6 sm:h-6" />

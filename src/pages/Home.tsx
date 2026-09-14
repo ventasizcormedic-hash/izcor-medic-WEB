@@ -14,19 +14,12 @@ import { TestimonialsSection } from '../components/home/TestimonialsSection';
 import { SeoHead } from '../components/seo/SeoHead';
 import { ConsultingSection } from '../components/home/ConsultingSection';
 import { InteractiveCtaButton } from '../components/common/InteractiveCtaButton';
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 25 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } }
-};
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 }
-  }
-};
+import { 
+  staggerContainer, 
+  staggerGridRelaxed, 
+  staggerItem, 
+  fadeUp 
+} from '../utils/animations';
 
 // Animated Counter Component
 function AnimatedCounter({ end, suffix = '' }: { end: number, suffix?: string }) {
@@ -205,7 +198,7 @@ export function Home() {
           <div className="absolute bottom-0 inset-x-0 h-28 bg-gradient-to-t from-[#0D2232] via-[#0D2232]/80 to-transparent pointer-events-none" />
 
           {/* CAPA 2 & 3: Composición de Contenido + Monitor 3D */}
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full py-16 sm:py-20 lg:py-24">
+          <div className="max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10 w-full py-16 sm:py-20 lg:py-24">
             <div className="brand-hero-panel brand-hero-panel--editorial rounded-[2rem] border border-white/10 px-4 py-5 sm:px-6 sm:py-6 lg:px-8 lg:py-8">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
               
@@ -376,7 +369,13 @@ export function Home() {
         </section>
 
         {/* FASE 08: CERTIFICACIONES DIGEMID */}
-        <section className="official-certification-section bg-white py-8 border-b border-slate-200/80">
+        <motion.section 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-40px" }}
+          variants={fadeUp}
+          className="official-certification-section bg-white py-8 border-b border-slate-200/80"
+        >
           <div className="official-certification-artwork-wrap">
             <img
               className="official-certification-artwork"
@@ -384,11 +383,11 @@ export function Home() {
               alt="Certificaciones oficiales de IZCOR MEDIC"
             />
           </div>
-        </section>
+        </motion.section>
 
         {/* 2. INSTITUTIONAL METRICS, EXPERIENCE & CAPACITY BAR */}
         <section className="bg-[#0D2232] py-16 border-b border-white/10 relative z-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-8">
               
               {/* Highlight: 20+ Years Experience */}
@@ -416,7 +415,13 @@ export function Home() {
 
               {/* Other Stats */}
               <div className="w-full lg:w-2/3">
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-4 divide-x-0 md:divide-x divide-white/10 text-center">
+                <motion.div 
+                  initial="hidden" 
+                  whileInView="visible" 
+                  viewport={{ once: true }} 
+                  variants={staggerContainer}
+                  className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-4 divide-x-0 md:divide-x divide-white/10 text-center"
+                >
                   {[
                     { value: <><span className="text-[#00B9D8]">+</span><AnimatedCounter end={500} /></>, label: 'Equipos Médicos' },
                     { value: <><span className="text-[#00B9D8]">+</span><AnimatedCounter end={50} /></>, label: 'Marcas y Socios' },
@@ -425,10 +430,7 @@ export function Home() {
                   ].map((stat, index) => (
                     <motion.div 
                       key={index} 
-                      initial="hidden" 
-                      whileInView="visible" 
-                      viewport={{ once: true }} 
-                      variants={fadeUp}
+                      variants={staggerItem}
                       className="px-2"
                     >
                       <div className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-2 tracking-tight font-heading">
@@ -439,7 +441,7 @@ export function Home() {
                       </div>
                     </motion.div>
                   ))}
-                </div>
+                </motion.div>
               </div>
               
             </div>
@@ -448,7 +450,7 @@ export function Home() {
 
         {/* 3. MEDICAL CATEGORIES (Structured Exploration by Clinical Line) */}
         <section id="categories-section" className="py-20 sm:py-24 bg-[#F8FAFC]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             
             <motion.div 
               initial="hidden" 
@@ -479,7 +481,13 @@ export function Home() {
               </Link>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <motion.div 
+              variants={staggerGridRelaxed}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-40px" }}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+            >
               {[
                 { 
                   title: 'Equipos Médicos & UCI', 
@@ -532,10 +540,7 @@ export function Home() {
               ].map((cat, i) => (
                 <motion.div 
                   key={i}
-                  initial="hidden" 
-                  whileInView="visible" 
-                  viewport={{ once: true }} 
-                  variants={fadeUp}
+                  variants={staggerItem}
                   className="bg-white rounded-2xl border border-slate-200/90 shadow-2xs hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer group flex flex-col justify-between h-full relative overflow-hidden"
                   onClick={() => navigate((cat as any).href || (cat.slug ? `/productos?category=${cat.slug}` : '/productos'))}
                 >
@@ -583,13 +588,13 @@ export function Home() {
                   </div>
                 </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
         </section>
 
         {/* 4. FEATURED PRODUCTS SHOWCASE (Standardized ProductCard with Actions) */}
         <section id="featured-products-section" className="py-20 sm:py-24 bg-white border-y border-slate-200/80">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             
             <motion.div 
               initial="hidden" 
@@ -698,7 +703,7 @@ export function Home() {
 
         {/* 5. MEDICAL TRUST & PROCUREMENT VALUE (Why IZCOR) */}
         <section className="py-20 sm:py-24 bg-[#F8FAFC]">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             
             <motion.div 
               initial="hidden" 
@@ -800,7 +805,7 @@ export function Home() {
 
         {/* 6. SOLUTIONS BY HEALTHCARE SECTOR */}
         <section className="py-20 sm:py-24 bg-white border-y border-slate-200/80">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             
             <motion.div 
               initial="hidden" 
@@ -898,16 +903,29 @@ export function Home() {
 
         {/* 7. MEDICAL BRANDS & MANUFACTURERS (Dignified, clean brand grid) */}
         <section className="py-16 sm:py-20 bg-[#F8FAFC] overflow-x-hidden">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-3">
-              MARCAS Y FABRICANTES HOMOLOGADOS
-            </h2>
-            <p className="text-xl sm:text-2xl font-black text-[#2C3E50] mb-10 max-w-2xl mx-auto">
-              Tecnología Médica de Fabricantes Líderes Internacionales
-            </p>
+          <div className="max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 text-center">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-40px" }}
+              variants={fadeUp}
+            >
+              <h2 className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-3">
+                MARCAS Y FABRICANTES HOMOLOGADOS
+              </h2>
+              <p className="text-xl sm:text-2xl font-black text-[#2C3E50] mb-10 max-w-2xl mx-auto">
+                Tecnología Médica de Fabricantes Líderes Internacionales
+              </p>
+            </motion.div>
             
             {/* FASE 11: Marquesina de marcas */}
-            <div className="relative overflow-hidden w-full before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-16 before:bg-gradient-to-r before:from-[#F8FAFC] before:to-transparent after:absolute after:right-0 after:top-0 after:z-10 after:h-full after:w-16 after:bg-gradient-to-l after:from-[#F8FAFC] after:to-transparent">
+            <motion.div 
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-40px" }}
+              variants={fadeUp}
+              className="relative overflow-hidden w-full before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-16 before:bg-gradient-to-r before:from-[#F8FAFC] before:to-transparent after:absolute after:right-0 after:top-0 after:z-10 after:h-full after:w-16 after:bg-gradient-to-l after:from-[#F8FAFC] after:to-transparent"
+            >
               <div className="inline-flex animate-marquee hover:pause gap-4 md:gap-8 w-max">
                 {/* Doble render para que el loop sea fluido */}
                 {[...Array(2)].map((_, groupIdx) => (
@@ -938,17 +956,17 @@ export function Home() {
                   </div>
                 ))}
               </div>
-            </div>
+            </motion.div>
           </div>
         </section>
 
         {/* 8. SUPPLY PROCESS WORKFLOW (Transparent 5-step operational delivery) */}
         <section className="py-20 sm:py-24 bg-white border-y border-slate-200/80">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
             <motion.div 
               initial="hidden" 
               whileInView="visible" 
-              viewport={{ once: true }} 
+              viewport={{ once: true, margin: "-40px" }} 
               variants={fadeUp} 
               className="text-center max-w-2xl mx-auto mb-16"
             >
@@ -976,7 +994,7 @@ export function Home() {
                   key={i}
                   initial="hidden" 
                   whileInView="visible" 
-                  viewport={{ once: true }} 
+                  viewport={{ once: true, margin: "-40px" }} 
                   variants={fadeUp}
                   className="bg-[#F8FAFC] p-6 rounded-2xl border border-slate-200 flex flex-col justify-between text-left group hover:bg-white hover:shadow-md transition-all"
                 >
@@ -1002,8 +1020,14 @@ export function Home() {
 
         {/* 9. TDR & INSTITUTIONAL CALL TO ACTION BANNER */}
         <section className="py-20 sm:py-24 bg-[#F8FAFC]">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="bg-[#2C3E50] rounded-3xl p-8 sm:p-12 lg:p-16 text-white shadow-xl relative overflow-hidden">
+          <div className="max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+            <motion.div 
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-40px" }}
+              variants={fadeUp}
+              className="bg-[#2C3E50] rounded-3xl p-8 sm:p-12 lg:p-16 text-white shadow-xl relative overflow-hidden"
+            >
               {/* Background gradient decorative shapes */}
               <div className="absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 rounded-full bg-cyan-500/10 blur-3xl pointer-events-none" />
               <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-80 h-80 rounded-full bg-cyan-400/10 blur-3xl pointer-events-none" />
@@ -1056,7 +1080,7 @@ export function Home() {
                   </InteractiveCtaButton>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </section>
 

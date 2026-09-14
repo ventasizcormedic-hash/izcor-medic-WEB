@@ -1,0 +1,20 @@
+import React from 'react';
+export function AdminDashboard(props: any) { return <div className="p-6 bg-white rounded-2xl border border-slate-200">Dashboard Administrativo</div>; }
+export function ProductManager(props: any) { return <div className="p-6 bg-white rounded-2xl border border-slate-200">Gestión de Productos</div>; }
+export function ProductReviewWorkspace(props: any) { return <div className="p-6 bg-white rounded-2xl border border-slate-200">Revisión de Productos</div>; }
+export function ValidationManager(props: any) { return <div className="p-6 bg-white rounded-2xl border border-slate-200">Gestión de Validaciones</div>; }
+export function DeduplicationManager(props: any) { return <div className="p-6 bg-white rounded-2xl border border-slate-200">Deduplicación</div>; }
+export function ManufacturersManager(props: any) { return <div className="p-6 bg-white rounded-2xl border border-slate-200">Fabricantes</div>; }
+export function CategoriesManager(props: any) { return <div className="p-6 bg-white rounded-2xl border border-slate-200">Categorías</div>; }
+export function MediaCenterManager(props: any) { return <div className="p-6 bg-white rounded-2xl border border-slate-200">Centro de Medios</div>; }
+export function AutonomousEngineManager(props: any) { return <div className="p-6 bg-white rounded-2xl border border-slate-200">Motor Autónomo</div>; }
+export function ScraperManager(props: any) { return <div className="p-6 bg-white rounded-2xl border border-slate-200">Scraper</div>; }
+export function MassImportManager(props: any) { return <div className="p-6 bg-white rounded-2xl border border-slate-200">Importación Masiva</div>; }
+export function SourcesManager(props: any) { return <div className="p-6 bg-white rounded-2xl border border-slate-200">Fuentes</div>; }
+export function ErrorCenterManager(props: any) { return <div className="p-6 bg-white rounded-2xl border border-slate-200">Centro de Errores</div>; }
+export function AuditLogsManager(props: any) { return <div className="p-6 bg-white rounded-2xl border border-slate-200">Registros de Auditoría</div>; }
+export function AnalyticsManager(props: any) { return <div className="p-6 bg-white rounded-2xl border border-slate-200">Analíticas</div>; }
+export function UsersManager(props: any) { return <div className="p-6 bg-white rounded-2xl border border-slate-200">Usuarios</div>; }
+export function SystemHealthManager(props: any) { return <div className="p-6 bg-white rounded-2xl border border-slate-200">Salud del Sistema</div>; }
+export function SettingsManager(props: any) { return <div className="p-6 bg-white rounded-2xl border border-slate-200">Configuración</div>; }
+export function ReadinessReportManager(props: any) { return <div className="p-6 bg-white rounded-2xl border border-slate-200">Reporte de Preparación</div>; }

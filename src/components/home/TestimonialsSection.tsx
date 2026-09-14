@@ -19,6 +19,18 @@ export interface Testimonial {
   date: string;
 }
 
+const fadeUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { 
+    opacity: 1, 
+    y: 0, 
+    transition: { 
+      duration: 0.5, 
+      ease: [0.16, 1, 0.3, 1] as [number, number, number, number] 
+    } 
+  }
+};
+
 const TESTIMONIALS_DATA: Testimonial[] = [
   {
     id: '1',
@@ -152,10 +164,16 @@ export function TestimonialsSection() {
         aria-hidden="true" 
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-[1680px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-40px" }}
+          variants={fadeUp}
+          className="text-center max-w-3xl mx-auto mb-12 sm:mb-16"
+        >
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-50 border border-cyan-200/80 text-brand-cyan text-xs font-bold uppercase tracking-wider mb-4 shadow-2xs">
             <ShieldCheck className="w-4 h-4 text-brand-cyan" />
             <span>Confianza Institucional Comprobada</span>
@@ -207,10 +225,14 @@ export function TestimonialsSection() {
               <span>Sector Privado (Clínicas y Laboratorios)</span>
             </button>
           </div>
-        </div>
+        </motion.div>
 
         {/* Carousel Wrapper */}
-        <div 
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-40px" }}
+          variants={fadeUp}
           className="max-w-4xl mx-auto relative"
           onMouseEnter={() => setIsAutoPlaying(false)}
           onMouseLeave={() => setIsAutoPlaying(true)}
@@ -351,10 +373,16 @@ export function TestimonialsSection() {
               {currentIndex + 1} de {filteredTestimonials.length} testimonios
             </span>
           </div>
-        </div>
+        </motion.div>
 
         {/* Institutional Trust Metrics Bar below Carousel */}
-        <div className="mt-16 pt-12 border-t border-slate-200/80 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+        <motion.div 
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-40px" }}
+          variants={fadeUp}
+          className="mt-16 pt-12 border-t border-slate-200/80 grid grid-cols-2 md:grid-cols-4 gap-6 text-center"
+        >
           <div className="p-4 rounded-2xl bg-white border border-slate-200/80 shadow-2xs">
             <p className="text-2xl sm:text-3xl font-black text-[#2C3E50] tracking-tight">+150</p>
             <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mt-1">Instituciones Atendidas</p>
@@ -374,7 +402,7 @@ export function TestimonialsSection() {
             <p className="text-2xl sm:text-3xl font-black text-brand-cyan tracking-tight">24/7</p>
             <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mt-1">Soporte Biomédico</p>
           </div>
-        </div>
+        </motion.div>
 
       </div>
     </section>

@@ -5,6 +5,8 @@ import {
   AlertCircle, Loader2 
 } from 'lucide-react';
 import { SeoHead } from '../components/seo/SeoHead';
+import { motion } from 'motion/react';
+import { staggerContainer, staggerItem } from '../utils/animations';
 
 interface BrandItem {
   id: number;
@@ -77,8 +79,8 @@ export function BrandsDirectory() {
         canonicalUrl="/marcas"
         noindex={page > 1 || Boolean(searchParams.get('search'))}
       />
-      <div className="min-h-screen bg-[#F6F8FC] py-8 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto space-y-8">
+      <div className="min-h-screen bg-[#F6F8FC] py-8 px-4 sm:px-6 lg:px-8 xl:px-12">
+        <div className="max-w-[1680px] mx-auto space-y-8">
         
         {/* Breadcrumb */}
         <nav className="flex text-xs font-semibold text-slate-500" aria-label="Breadcrumb">
@@ -157,13 +159,22 @@ export function BrandsDirectory() {
             <p className="text-sm font-bold text-[#2C3E50]">No se encontraron marcas</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <motion.div 
+            variants={staggerContainer}
+            initial="hidden"
+            animate="visible"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
             {brands.map((brand) => (
-              <div 
+              <motion.div
                 key={brand.id}
-                onClick={() => navigate(`/marcas/${brand.slug || brand.id}`)}
-                className="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-xs hover:shadow-lg hover:border-brand-cyan/40 transition-all cursor-pointer group flex flex-col justify-between"
+                variants={staggerItem}
+                className="h-full"
               >
+                <div 
+                  onClick={() => navigate(`/marcas/${brand.slug || brand.id}`)}
+                  className="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-xs hover:shadow-lg hover:border-brand-cyan/40 transition-all cursor-pointer group flex flex-col justify-between h-full"
+                >
                 <div>
                   <div className="flex items-start justify-between gap-3 mb-4">
                     <div className="w-12 h-12 rounded-xl bg-slate-100 border border-slate-200 flex items-center justify-center text-[#2C3E50] font-black text-lg group-hover:bg-[#2C3E50] group-hover:text-white transition-colors">
@@ -202,8 +213,9 @@ export function BrandsDirectory() {
                   </span>
                 </div>
               </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         )}
 
         {/* Pagination */}
