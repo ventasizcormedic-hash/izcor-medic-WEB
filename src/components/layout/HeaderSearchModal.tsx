@@ -20,6 +20,8 @@ interface SuggestionsData {
   brands: SuggestionItem[];
   categories: SuggestionItem[];
   manufacturers: string[];
+  suggestedCorrection?: string | null;
+  expandedTerms?: string[];
 }
 
 interface HeaderSearchModalProps {
@@ -108,6 +110,8 @@ export function HeaderSearchModal({ isOpen, onClose }: HeaderSearchModalProps) {
           brands: data.brands || [],
           categories: data.categories || [],
           manufacturers: data.manufacturers || [],
+          suggestedCorrection: data.suggestedCorrection || null,
+          expandedTerms: data.expandedTerms || [],
         });
       } catch (err: any) {
         if (err.name !== 'AbortError') {
@@ -265,6 +269,41 @@ export function HeaderSearchModal({ isOpen, onClose }: HeaderSearchModalProps) {
           {/* State 3: Structured Results */}
           {hasResults && (
             <div className="space-y-3 p-2">
+              {/* Clinical AI & Typo Tolerance Hint */}
+              {(suggestions.suggestedCorrection || (suggestions.expandedTerms && suggestions.expandedTerms.length > 0)) && (
+                <div className="mx-1 px-3 py-2 bg-cyan-50/70 border border-cyan-100 rounded-xl flex items-center justify-between text-xs text-cyan-950">
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <Sparkles className="w-3.5 h-3.5 text-cyan-600 flex-shrink-0" />
+                    {suggestions.suggestedCorrection ? (
+                      <span>
+                        Quizás quisiste decir:{' '}
+                        <button
+                          type="button"
+                          onClick={() => setQuery(suggestions.suggestedCorrection!)}
+                          className="font-bold underline hover:text-cyan-700 cursor-pointer"
+                        >
+                          {suggestions.suggestedCorrection}
+                        </button>
+                      </span>
+                    ) : (
+                      <span>
+                        Términos clínicos relacionados:{' '}
+                        {suggestions.expandedTerms?.slice(0, 3).map((term, i) => (
+                          <button
+                            key={term}
+                            type="button"
+                            onClick={() => setQuery(term)}
+                            className="font-semibold underline ml-1 hover:text-cyan-700 cursor-pointer"
+                          >
+                            {term}{i < Math.min(2, (suggestions.expandedTerms?.length || 1) - 1) ? ',' : ''}
+                          </button>
+                        ))}
+                      </span>
+                    )}
+                  </div>
+                </div>
+              )}
+
               {/* Products */}
               {suggestions.products.length > 0 && (
                 <div>

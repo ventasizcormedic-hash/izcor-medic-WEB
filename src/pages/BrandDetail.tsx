@@ -2,11 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { 
   Tag, ShieldCheck, Building2, Package, ChevronRight, 
-  ExternalLink, AlertCircle, Loader2, Globe, Globe2, CheckCircle2, MessageCircle
+  ExternalLink, AlertCircle, Loader2, Globe, MessageCircle
 } from 'lucide-react';
 import { ProductCard } from '../components/ProductCard';
 import { SeoHead } from '../components/seo/SeoHead';
-import { FEATURED_BRANDS_LIST } from '../components/brands/BrandLogos';
 
 export function BrandDetail() {
   const { idOrSlug } = useParams<{ idOrSlug: string }>();
@@ -65,12 +64,6 @@ export function BrandDetail() {
   const { brand, products: productList, total } = data;
   const totalPages = Math.ceil(total / limit);
 
-  const featuredBrand = FEATURED_BRANDS_LIST.find(
-    b => b.name.toLowerCase() === brand.name.toLowerCase() ||
-         b.slug === brand.slug ||
-         brand.name.toLowerCase().includes(b.name.toLowerCase())
-  );
-
   return (
     <>
       <SeoHead
@@ -100,31 +93,13 @@ export function BrandDetail() {
           </ol>
         </nav>
 
-        {/* Brand Header (A Detalle y Sin Distorsionar) */}
-        <div className="bg-white rounded-3xl border border-slate-200/90 p-6 sm:p-8 shadow-xs relative overflow-hidden">
-          {featuredBrand && (
-            <div 
-              className="absolute top-0 left-0 right-0 h-1.5"
-              style={{ backgroundColor: featuredBrand.accentColor || '#00B9D8' }}
-            />
-          )}
-
+        {/* Brand Header */}
+        <div className="bg-white rounded-3xl border border-slate-200/90 p-6 sm:p-8 shadow-xs">
           <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
             <div className="flex flex-col sm:flex-row items-start gap-5">
-              {featuredBrand ? (
-                <div className="w-full sm:w-48 h-24 bg-slate-50 rounded-2xl border border-slate-200/80 p-3 flex items-center justify-center shrink-0 overflow-hidden">
-                  <img 
-                    src={featuredBrand.logoUrl} 
-                    alt={`Logo oficial de ${brand.name}`}
-                    className="max-h-14 max-w-[85%] w-auto h-auto object-contain"
-                  />
-                </div>
-              ) : (
-                <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-slate-100 border border-slate-200 text-[#2C3E50] flex items-center justify-center font-black text-2xl md:text-3xl shadow-xs shrink-0">
-                  {brand.name.charAt(0)}
-                </div>
-              )}
-              
+              <div className="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-slate-100 border border-slate-200 text-[#2C3E50] flex items-center justify-center font-black text-2xl md:text-3xl shadow-xs shrink-0">
+                {brand.name.charAt(0)}
+              </div>
               <div>
                 <div className="flex items-center gap-2 mb-2 flex-wrap">
                   <span className="px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-slate-100 text-[#2C3E50] border border-slate-200">
@@ -133,21 +108,10 @@ export function BrandDetail() {
                   <span className="px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-emerald-50 text-emerald-700 border border-emerald-200">
                     {brand.peruPresenceStatus}
                   </span>
-                  {featuredBrand && (
-                    <span className="px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-wider bg-cyan-50 text-[#008DA8] border border-cyan-200 flex items-center gap-1">
-                      <Globe2 className="w-3 h-3" />
-                      <span>{featuredBrand.origin}</span>
-                    </span>
-                  )}
                 </div>
                 <h1 className="text-2xl md:text-3xl lg:text-4xl font-black text-[#2C3E50] tracking-tight mb-1">
                   {brand.name}
                 </h1>
-                {featuredBrand && (
-                  <p className="text-xs sm:text-sm text-slate-600 font-semibold mb-2">
-                    {featuredBrand.tagline}
-                  </p>
-                )}
                 {brand.manufacturer && (
                   <p className="text-xs md:text-sm text-slate-600 font-medium">
                     Fabricante Asociado: <Link to={`/fabricantes/${encodeURIComponent(brand.manufacturer)}`} className="text-[#2C3E50] font-bold hover:underline">{brand.manufacturer}</Link>
@@ -189,23 +153,9 @@ export function BrandDetail() {
           </div>
 
           {/* Reseña o Detalle de Fabricante */}
-          {(featuredBrand?.description || brand.description) && (
+          {brand.description && (
             <div className="mt-6 pt-6 border-t border-slate-100 text-sm text-slate-600 leading-relaxed">
-              {featuredBrand?.description || brand.description}
-            </div>
-          )}
-
-          {/* Certificaciones y Especialidades si es Marca Destacada */}
-          {featuredBrand && (
-            <div className="mt-4 pt-4 border-t border-slate-100 flex flex-wrap items-center gap-2">
-              <span className="text-xs font-bold text-slate-500 uppercase tracking-wider mr-2">
-                Acreditaciones:
-              </span>
-              {featuredBrand.certifications.map((cert, i) => (
-                <span key={i} className="px-2.5 py-0.5 rounded-md bg-emerald-50 text-emerald-800 border border-emerald-200 text-xs font-bold">
-                  ✓ {cert}
-                </span>
-              ))}
+              {brand.description}
             </div>
           )}
         </div>

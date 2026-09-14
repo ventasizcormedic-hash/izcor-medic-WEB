@@ -1,24 +1,25 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 85" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
   <defs>
-    <radialGradient id="riesterSphere" cx="35%" cy="35%" r="65%">
+    <radialGradient id="riesterSphereGlow" cx="35%" cy="35%" r="65%">
       <stop offset="0%" stop-color="#FFFFFF" />
-      <stop offset="40%" stop-color="#BDC3C7" />
-      <stop offset="100%" stop-color="#5B6770" />
+      <stop offset="35%" stop-color="#C5CCD3" />
+      <stop offset="75%" stop-color="#7B8894" />
+      <stop offset="100%" stop-color="#4B5661" />
     </radialGradient>
   </defs>
-  <!-- Riester Logo (#1E5198) -->
+  <!-- Riester Official Brand Logo (#205AA2) -->
   <g>
-    <!-- Left Icon (bracketed target ring + sphere) -->
-    <g transform="translate(18, 16)">
-      <!-- Left crescent -->
-      <path d="M 18,3 C 9,7 3,16 3,24 C 3,32 9,41 18,45 L 21,39 C 15,36 10,29 10,24 C 10,19 15,12 21,9 Z" fill="#1E5198" />
-      <!-- Right crescent -->
-      <path d="M 30,3 C 39,7 45,16 45,24 C 45,32 39,41 30,45 L 27,39 C 33,36 38,29 38,24 C 38,19 33,12 27,9 Z" fill="#1E5198" />
-      <!-- Center sphere -->
-      <circle cx="24" cy="24" r="10.5" fill="url(#riesterSphere)" />
+    <!-- Left Icon (bracketed target ring + metallic 3D sphere) -->
+    <g transform="translate(16, 18)">
+      <!-- Left crescent bracket -->
+      <path d="M 20,3 C 9.5,7.5 3,17 3,25.5 C 3,34 9.5,43.5 20,48 L 23,41.5 C 15,38 10.5,31 10.5,25.5 C 10.5,20 15,13 23,9.5 Z" fill="#205AA2" />
+      <!-- Right crescent bracket -->
+      <path d="M 32,3 C 42.5,7.5 49,17 49,25.5 C 49,34 42.5,43.5 32,48 L 29,41.5 C 37,38 41.5,31 41.5,25.5 C 41.5,20 37,13 29,9.5 Z" fill="#205AA2" />
+      <!-- Center metallic sphere with 3D gradient -->
+      <circle cx="26" cy="25.5" r="11" fill="url(#riesterSphereGlow)" />
     </g>
 
-    <!-- Riester Typography -->
-    <text x="76" y="52" fill="#1E5198" font-family="system-ui, -apple-system, 'Segoe UI', Arial, sans-serif" font-size="44" font-weight="900" font-style="italic" letter-spacing="-1">Riester</text>
+    <!-- Riester Typography (Italicized bold sans-serif) -->
+    <text x="78" y="55" fill="#205AA2" font-family="'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif" font-size="46" font-weight="900" font-style="italic" letter-spacing="-1">Riester</text>
   </g>
 </svg>
