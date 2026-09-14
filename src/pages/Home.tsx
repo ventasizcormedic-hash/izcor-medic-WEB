@@ -13,6 +13,7 @@ import { MedicalSearchBox } from '../components/catalog/MedicalSearchBox';
 import { TestimonialsSection } from '../components/home/TestimonialsSection';
 import { SeoHead } from '../components/seo/SeoHead';
 import { ConsultingSection } from '../components/home/ConsultingSection';
+import { FeaturedBrandsSection } from '../components/home/FeaturedBrandsSection';
 import { InteractiveCtaButton } from '../components/common/InteractiveCtaButton';
 
 const fadeUp = {
@@ -896,51 +897,8 @@ export function Home() {
           </div>
         </section>
 
-        {/* 7. MEDICAL BRANDS & MANUFACTURERS (Dignified, clean brand grid) */}
-        <section className="py-16 sm:py-20 bg-[#F8FAFC] overflow-x-hidden">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 className="text-xs font-bold uppercase tracking-widest text-slate-500 mb-3">
-              MARCAS Y FABRICANTES HOMOLOGADOS
-            </h2>
-            <p className="text-xl sm:text-2xl font-black text-[#2C3E50] mb-10 max-w-2xl mx-auto">
-              Tecnología Médica de Fabricantes Líderes Internacionales
-            </p>
-            
-            {/* FASE 11: Marquesina de marcas */}
-            <div className="relative overflow-hidden w-full before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-16 before:bg-gradient-to-r before:from-[#F8FAFC] before:to-transparent after:absolute after:right-0 after:top-0 after:z-10 after:h-full after:w-16 after:bg-gradient-to-l after:from-[#F8FAFC] after:to-transparent">
-              <div className="inline-flex animate-marquee hover:pause gap-4 md:gap-8 w-max">
-                {/* Doble render para que el loop sea fluido */}
-                {[...Array(2)].map((_, groupIdx) => (
-                  <div key={groupIdx} className="flex gap-4 md:gap-8 shrink-0">
-                    {[
-                      { name: 'Mindray', origin: 'Equipos UCI & Monitoreo' },
-                      { name: 'NOPA Instruments', origin: 'Instrumental Quirúrgico' },
-                      { name: 'Roker', origin: 'Insumos & Descartables' },
-                      { name: 'Clute', origin: 'Bioseguridad & Protección' },
-                      { name: 'Aceros UP', origin: 'Mobiliario Hospitalario' },
-                      { name: 'Jampar', origin: 'Insumos Hospitalarios' },
-                      { name: 'Edan', origin: 'Diagnóstico por Imágenes' },
-                      { name: 'Bowa', origin: 'Electrocirugía' }
-                    ].map((brand) => (
-                      <div 
-                        key={brand.name + groupIdx}
-                        onClick={() => navigate(`/productos?search=${encodeURIComponent(brand.name)}`)}
-                        className="w-48 sm:w-56 p-5 rounded-2xl bg-white border border-slate-200/90 shadow-sm hover:shadow-md hover:border-[#2C3E50] transition-all cursor-pointer group flex flex-col items-center justify-center text-center shrink-0"
-                      >
-                        <span className="text-base sm:text-lg font-black text-[#2C3E50] group-hover:text-brand-cyan transition-colors tracking-tight">
-                          {brand.name}
-                        </span>
-                        <span className="text-[10px] font-semibold text-slate-500 mt-1 uppercase tracking-wider">
-                          {brand.origin}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
+        {/* 7. MEDICAL BRANDS & MANUFACTURERS (Ubicadas a detalle y sin distorsionar) */}
+        <FeaturedBrandsSection />
 
         {/* 8. SUPPLY PROCESS WORKFLOW (Transparent 5-step operational delivery) */}
         <section className="py-20 sm:py-24 bg-white border-y border-slate-200/80">

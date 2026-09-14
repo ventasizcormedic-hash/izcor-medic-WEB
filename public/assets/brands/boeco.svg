@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 90" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
+  <!-- BOECO Germany Logo (#0018D6 / #0000FF) -->
+  <g fill="#0018D6">
+    <!-- Box with stylized B/T monogram -->
+    <rect x="15" y="16" width="60" height="58" fill="none" stroke="#0018D6" stroke-width="1.2" />
+    <path d="M 23,24 L 67,24 L 67,31 L 49,31 L 40,55 C 44,54 48,54 53,55 C 60,56.5 64,61 63,67 C 62,72 56,74 47,74 C 36,74 27,67 27,56 C 27,47 31,39 37,31 L 23,31 Z M 38,57 C 35.5,61 35.5,67 43,67 C 49,67 52,65 52,61 C 52,58 48,57 43,57 Z" fill="#0018D6" />
+    
+    <!-- BOECO Text -->
+    <text x="88" y="47" font-family="system-ui, -apple-system, 'Segoe UI', Arial, sans-serif" font-size="34" font-weight="900" letter-spacing="1">BOECO</text>
+    <!-- Germany Text -->
+    <text x="89" y="68" font-family="system-ui, -apple-system, 'Segoe UI', Arial, sans-serif" font-size="16" font-weight="400" letter-spacing="4.5">Germany</text>
+  </g>
+</svg>
